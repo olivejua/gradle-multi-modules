@@ -1,14 +1,15 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '2.4.4'
-}
-
-repositories {
-    mavenCentral()
-}
-
-bootJar {
-    mainClassName('')
+buildscript {
+    ext {
+        springBootVersion = '2.6.1'
+        dependencyManagementVersion = '1.0.11.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}")
+    }
 }
 
 subprojects {
@@ -25,19 +26,25 @@ subprojects {
         mavenCentral()
     }
 
+    dependencies {
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
+    }
+
     task hello {
         doLast {
             task -> println "I'm $task.project.name"
         }
     }
+}
 
+project(':module-api') {
     dependencies {
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
+        compile project(':module-common')
     }
+}
 
-    test {
-        useJUnitPlatform()
+project(':module-web') {
+    dependencies {
+        compile project(':module-common')
     }
 }
