@@ -1,13 +1,13 @@
-package me.olivejua.moduleApi.service;
+package me.olivejua.service;
 
-import me.olivejua.commonModule.domain.Member;
-import me.olivejua.commonModule.repository.MemberRepository;
+import me.olivejua.domain.Member;
+import me.olivejua.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MemberServiceCustom {
 
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     public MemberServiceCustom(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;

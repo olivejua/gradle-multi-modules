@@ -1,14 +1,14 @@
-package me.olivejua.commonModule.repository;
+package me.olivejua.moduleApi.repository;
 
-import me.olivejua.commonModule.domain.Member;
+import me.olivejua.domain.Member;
+import me.olivejua.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -18,9 +18,10 @@ public class MemberRepositoryTest {
     private MemberRepository memberRepository;
 
     @Test
-    void add() {
-        memberRepository.save(new Member("olivejua", "olivejua@gmail.com"));
-        Member saved = memberRepository.findById(1L).get();
-        assertThat(saved.getName(), is("olivejua"));
+    void save() {
+        Member member = new Member("seulki", "tmfrl4710@gmail.com", "olivejua");
+        memberRepository.save(member);
+
+        assertThat(member.getId()).isEqualTo(1L);
     }
 }

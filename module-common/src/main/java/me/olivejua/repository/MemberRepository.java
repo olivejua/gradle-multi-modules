@@ -1,6 +1,6 @@
-package me.olivejua.commonModule.repository;
+package me.olivejua.repository;
 
-import me.olivejua.commonModule.domain.Member;
+import me.olivejua.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {

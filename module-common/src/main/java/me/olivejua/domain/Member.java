@@ -1,4 +1,4 @@
-package me.olivejua.commonModule.domain;
+package me.olivejua.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,8 @@ import javax.persistence.Id;
 
 @Entity
 public class Member {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @Column
@@ -16,7 +17,16 @@ public class Member {
     @Column
     private String email;
 
+    @Column
+    private String nickname;
+
     public Member() {
+    }
+
+    public Member(String name, String email, String nickname) {
+        this.name = name;
+        this.email = email;
+        this.nickname = nickname;
     }
 
     public Member(String name, String email) {
@@ -34,5 +44,9 @@ public class Member {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 }
